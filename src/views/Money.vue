@@ -1,24 +1,14 @@
 <template>
-  <div class="nav-wrapper">
-    <div class="content">money</div>
-    <Nav />
-  </div>
+  <layout>
+    <p>money</p>
+  </layout>
 </template>
 
 <script lang="ts">
+import Layout from "@/components/Layout.vue";
 import Vue from "vue";
-export default Vue.extend({});
+export default Vue.extend({
+  components: { Layout },
+});
 </script>
 
-<style lang="scss" scoped>
-.nav-wrapper {
-  display: flex;
-  border: 1px solid green;
-  flex-direction: column;
-  height: 100vh;
-}
-.content {
-  overflow: auto;
-  flex-grow: 1;
-}
-</style>
