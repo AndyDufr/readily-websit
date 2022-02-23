@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <br />
   </div>
 </template>
 
@@ -18,17 +17,12 @@
   text-align: center;
   color: #2c3e50;
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+body {
+  line-height: 1.5;
+  letter-spacing: 2px;
+}
+a {
+  text-decoration: none;
+  color: inherit;
 }
 </style>
