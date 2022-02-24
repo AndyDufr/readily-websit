@@ -27,6 +27,8 @@ nav {
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   justify-content: space-around;
   font-size: 12px;
+  letter-spacing: 2px;
+
   > .link {
     width: 33.3333%;
     padding: 3px 0;
@@ -40,6 +42,7 @@ nav {
   }
   .light {
     color: red;
+    background-color: rgba(177, 172, 172, 0.5);
   }
 }
 </style>

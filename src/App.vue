@@ -19,7 +19,6 @@
 }
 body {
   line-height: 1.5;
-  letter-spacing: 2px;
 }
 a {
   text-decoration: none;
