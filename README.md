@@ -42,3 +42,5 @@
 * svg 在项目里很多地方都会用，所以最好的做法是封装一个 icon 组件
 
 * 自动删除 svg 文件的 fill 属性: yarn add --dev svgo-loader@2.2.1
+
+* 全平台的字体解决库： font.css ： zenozeng.github.io/font.css/
