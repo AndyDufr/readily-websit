@@ -44,3 +44,23 @@
 * 自动删除 svg 文件的 fill 属性: yarn add --dev svgo-loader@2.2.1
 
 * 全平台的字体解决库： font.css ： zenozeng.github.io/font.css/
+
+* scss 使用 placeholder
+    * 定义： 
+        ```javascript
+            // xxx.scss 文件
+            % xxx {
+                &::after {
+                    content:'';
+                    display: block;
+                    clear: both;
+                }
+            }
+        ```
+    * 使用：
+        ```javascript
+            // 引入 @import '~@/xxx/xxx/xxx.scss'
+            .buttons {
+                @extend %xxx;
+            }
+        ```
