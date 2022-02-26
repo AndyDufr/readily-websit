@@ -22,9 +22,10 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+@import "~@/assets/style/help.scss";
 nav {
   display: flex;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 3px $color-shadow;
   justify-content: space-around;
   font-size: 12px;
   letter-spacing: 2px;
@@ -42,7 +43,7 @@ nav {
   }
   .light {
     color: red;
-    background-color: rgba(177, 172, 172, 0.5);
+    background-color: #f5f5f5;
   }
 }
 </style>
