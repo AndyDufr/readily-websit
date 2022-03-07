@@ -1,27 +1,47 @@
 <template>
   <layout class-prefix="xxx">
-    <NumberPad />
-    <Types />
-    <Notes />
-    <Tags :dataSource.sync="tags" />
+    <NumberPad :value.sync="record.amount" />
+    <Types :value.sync="record.type" />
+    <Notes :value.sync="record.notes" />
+    <Tags :dataSource.sync="tags" @update:value="onUpdateTags" />
+    {{ record }}
   </layout>
 </template>
 
-<script lang="js">
+<script lang="ts">
+import Vue from "vue";
 import Layout from "@/components/Layout.vue";
-import Tags from '@/components/money/Tags.vue';
+import Tags from "@/components/money/Tags.vue";
 import Notes from "@/components/money/Notes.vue";
 import Types from "@/components/money/Types.vue";
 import NumberPad from "@/components/money/NumberPad.vue";
-export default {
-  components: { Layout, Tags, Notes, Types, NumberPad },
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  data() {
-    return {
-      tags:['衣','食','住','行','1']
-    }
-  }
+
+type Record = {
+  tags: string[];
+  notes: string;
+  type: "-" | "+";
+  amount: number;
 };
+
+import { Component } from "vue-property-decorator";
+@Component({
+  components: { Layout, Tags, Notes, Types, NumberPad },
+})
+export default class Money extends Vue {
+  tags = ["衣", "食", "住", "行"];
+  record: Record = {
+    tags: [],
+    notes: "",
+    type: "-",
+    amount: 0,
+  };
+  onUpdateTags(value: string[]): void {
+    this.record.tags = value;
+  }
+  onUpdateNotes(value: string): void {
+    this.record.notes = value;
+  }
+}
 </script>
 
 <style lang="scss">

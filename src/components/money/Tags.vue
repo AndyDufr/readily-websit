@@ -32,7 +32,12 @@ export default class Tags extends Vue {
     } else {
       this.selectTags.push(tag);
     }
+    this.$emit("update:value", this.selectTags);
   }
+  // @Watch("dataSource")
+  // updateValue(newValue: string[]): void {
+  //   this.$emit("update:value", newValue);
+  // }
   creat(): void {
     const name = window.prompt("请输入标签名");
     if (name === "") {
