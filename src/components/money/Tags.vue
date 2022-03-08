@@ -54,7 +54,7 @@ export default class Tags extends Vue {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "~@/assets/style/help.scss";
 
 .tags {
