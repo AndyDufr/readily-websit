@@ -1,6 +1,6 @@
 <template>
   <layout class-prefix="xxx">
-    <NumberPad :value.sync="record.amount" />
+    <NumberPad :value.sync="record.amount" @update:submit="submit" />
     <Types :value.sync="record.type" />
     <Notes :value.sync="record.notes" />
     <Tags :dataSource.sync="tags" @update:value="onUpdateTags" />
@@ -35,11 +35,20 @@ export default class Money extends Vue {
     type: "-",
     amount: 0,
   };
+  recordList: Record[] = [];
   onUpdateTags(value: string[]): void {
     this.record.tags = value;
   }
   onUpdateNotes(value: string): void {
     this.record.notes = value;
+  }
+
+  submit(): void {
+    // 此处必须要对源数据进行深拷贝之后再存入数据库
+    const recordDeepCope = JSON.parse(JSON.stringify(this.record));
+    this.recordList.push(recordDeepCope);
+    console.log(this.recordList);
+    window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
   }
 }
 </script>
