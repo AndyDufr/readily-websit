@@ -4,7 +4,6 @@
     <Types :value.sync="record.type" />
     <Notes :value.sync="record.notes" />
     <Tags :dataSource.sync="tags" @update:value="onUpdateTags" />
-    {{ record }}
   </layout>
 </template>
 
@@ -24,7 +23,7 @@ type Record = {
   time?: Date;
 };
 
-import { Component } from "vue-property-decorator";
+import { Component, Watch } from "vue-property-decorator";
 @Component({
   components: { Layout, Tags, Notes, Types, NumberPad },
 })
@@ -47,10 +46,21 @@ export default class Money extends Vue {
   }
 
   submit(): void {
+    if (this.record.tags.length === 0) {
+      window.alert("请至少选择一个标签");
+      return;
+    }
+    if (this.record.amount.toString() === "0.") {
+      window.alert("请输入正确的金额");
+      return;
+    }
     this.record.time = new Date();
     // 此处必须要对源数据进行深拷贝之后再存入数据库
     const recordDeepCope = JSON.parse(JSON.stringify(this.record));
     this.recordList.push(recordDeepCope);
+  }
+  @Watch("recordList")
+  onRecordListChange(): void {
     window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
   }
 }

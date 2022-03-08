@@ -48,8 +48,14 @@ export default class NumberPad extends Vue {
     this.output = "0";
   }
   ok(): void {
+    if (this.output === "0") {
+      window.alert("请输入金额");
+      return;
+    }
+
     this.$emit("update:value", this.output);
     this.$emit("update:submit", null);
+    this.output = "0";
   }
 }
 </script>
