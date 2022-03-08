@@ -21,6 +21,7 @@ type Record = {
   notes: string;
   type: "-" | "+";
   amount: number;
+  time?: Date;
 };
 
 import { Component } from "vue-property-decorator";
@@ -35,7 +36,9 @@ export default class Money extends Vue {
     type: "-",
     amount: 0,
   };
-  recordList: Record[] = [];
+  recordList: Record[] = JSON.parse(
+    window.localStorage.getItem("recordList") || "[]"
+  );
   onUpdateTags(value: string[]): void {
     this.record.tags = value;
   }
@@ -44,10 +47,10 @@ export default class Money extends Vue {
   }
 
   submit(): void {
+    this.record.time = new Date();
     // 此处必须要对源数据进行深拷贝之后再存入数据库
     const recordDeepCope = JSON.parse(JSON.stringify(this.record));
     this.recordList.push(recordDeepCope);
-    console.log(this.recordList);
     window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
   }
 }
