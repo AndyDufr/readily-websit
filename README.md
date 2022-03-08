@@ -64,3 +64,21 @@
                 @extend %xxx;
             }
         ```
+
+* model.ts 可能遇到的问题
+* 如果你遇到：已经在 custom.d.ts 中定义了 RecordItem, 但RecordItem仍然标红，显示未定义你可以：
+```javascript
+/*在 eslintrc.js 中加一行配置：
+  "globals": { "RecordItem": true }
+保存后彻底关闭编辑器后，重新打开当前项目
+如果还有类似的情况（如Tag），也可按照此方法解决
+如果你遇到：*/
+```
+* 当前命令行编译报错，无法进行 git commit你可以：
+```javascript
+/*git commit --no-verify -m "commit信息" 跳过本次pre-commit验证
+找到当前项目目录所在的 .git 文件夹，删除hooks文件夹，彻底删除这个限制*/
+```
+
+* 如何将一个 ts 声明的类型进行全局声明
+* 将类型声明代码移至根目录( src 目录)下 cunstom.d.ts (名字不重要),不需要引入

@@ -14,30 +14,20 @@ import Tags from "@/components/money/Tags.vue";
 import Notes from "@/components/money/Notes.vue";
 import Types from "@/components/money/Types.vue";
 import NumberPad from "@/components/money/NumberPad.vue";
-
-type Record = {
-  tags: string[];
-  notes: string;
-  type: "-" | "+";
-  amount: number;
-  time?: Date;
-};
-
+import model from "@/model";
 import { Component, Watch } from "vue-property-decorator";
 @Component({
   components: { Layout, Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
   tags = ["衣", "食", "住", "行"];
-  record: Record = {
+  record: RecordItem = {
     tags: [],
     notes: "",
     type: "-",
     amount: 0,
   };
-  recordList: Record[] = JSON.parse(
-    window.localStorage.getItem("recordList") || "[]"
-  );
+  recordList = model.fetch();
   onUpdateTags(value: string[]): void {
     this.record.tags = value;
   }
@@ -56,12 +46,12 @@ export default class Money extends Vue {
     }
     this.record.time = new Date();
     // 此处必须要对源数据进行深拷贝之后再存入数据库
-    const recordDeepCope = JSON.parse(JSON.stringify(this.record));
+    const recordDeepCope = model.deepCope(this.record);
     this.recordList.push(recordDeepCope);
   }
   @Watch("recordList")
   onRecordListChange(): void {
-    window.localStorage.setItem("recordList", JSON.stringify(this.recordList));
+    model.save(this.recordList);
   }
 }
 </script>
