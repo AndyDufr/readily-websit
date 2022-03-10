@@ -2,9 +2,9 @@ const loaclStorageKeyName = 'tagList'
 const tagListModel: tagListModel = {
     data: [],
     fetch() {
-        return JSON.parse(
-            window.localStorage.getItem(loaclStorageKeyName) || "[]"
-        );
+        const tags = JSON.parse(window.localStorage.getItem(loaclStorageKeyName) || '[]')
+        this.data = tags
+        return tags
     },
     save() {
         window.localStorage.setItem(loaclStorageKeyName, JSON.stringify(this.data));

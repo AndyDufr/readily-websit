@@ -25,6 +25,11 @@ const routes: Array<RouteConfig> = [
     component: () => import('../views/Statistics.vue')
   },
   {
+    path: '/labels/edit/:id',
+    name: 'Edit',
+    component: () => import('@/components/labels/Edit.vue')
+  },
+  {
     path: '*',
     name: 'NotFound',
     component: NotFound

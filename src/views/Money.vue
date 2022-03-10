@@ -17,21 +17,21 @@ import NumberPad from "@/components/money/NumberPad.vue";
 import recordListModel from "@/models/recordList";
 import tagListModel from "@/models/tagListModel";
 import { Component, Watch } from "vue-property-decorator";
+const tagList = tagListModel.fetch();
+const recordList = recordListModel.fetch();
 @Component({
   components: { Layout, Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
-  tags = tagListModel.fetch();
+  tags = tagList;
   record: RecordItem = {
     tags: [],
     notes: "",
     type: "-",
     amount: 0,
   };
-  recordList = recordListModel.fetch();
-  onUpdateTags(value: string[]): void {
-    this.record.tags = value;
-  }
+  recordList = recordList;
+
   onUpdateNotes(value: string): void {
     this.record.notes = value;
   }
