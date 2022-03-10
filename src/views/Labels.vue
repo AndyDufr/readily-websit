@@ -1,25 +1,13 @@
 <template>
   <layout>
     <ol class="tags">
-      <li>
-        <span>衣</span>
-        <Icon name="right" />
-      </li>
-      <li>
-        <span>食</span>
-        <Icon name="right" />
-      </li>
-      <li>
-        <span>住</span>
-        <Icon name="right" />
-      </li>
-      <li>
-        <span>行</span>
+      <li v-for="item in tags" :key="item">
+        <span>{{ item }}</span>
         <Icon name="right" />
       </li>
     </ol>
     <div class="createTag-wrapper">
-      <button class="createTag">新增标签</button>
+      <button class="createTag" @click="createTag">新增标签</button>
     </div>
   </layout>
 </template>
@@ -27,10 +15,31 @@
 <script lang="ts">
 import Icon from "@/components/Icon.vue";
 import Layout from "@/components/Layout.vue";
+import tagListModel from "@/models/tagListModel";
+
+// 每次先提前获取一下| 这句必须在tags定义之前执行
+tagListModel.fetch();
+
 import Vue from "vue";
-export default Vue.extend({
-  components: { Layout, Icon },
-});
+import { Component } from "vue-property-decorator";
+@Component({ components: { Layout, Icon } })
+export default class Labels extends Vue {
+  tags = tagListModel.data;
+  createTag(): void {
+    const name = window.prompt("请输入标签名");
+    if (name) {
+      const result = tagListModel.create(name);
+      if (result === "duplicated") {
+        window.alert("标签名重复");
+        return;
+      } else if (result === "seccess") {
+        tagListModel.create(name);
+      } else {
+        throw new Error("unkown");
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
