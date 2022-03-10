@@ -5,8 +5,12 @@ type RecordItem = {
     amount: number;
     time?: Date;
 };
+type Tag = {
+    id: string,
+    name: string
+}
 type tagListModel = {
-    data: string[]
+    data: tag[]
     fetch: () => RecordItem[],
     save: () => void,
     create: (name: string) => 'seccess' | 'duplicated'

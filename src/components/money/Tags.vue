@@ -5,13 +5,13 @@
     </div>
     <ul class="current">
       <li
-        v-for="(tag, index) in dataSource"
-        :key="index"
+        v-for="tag in dataSource"
+        :key="tag.id"
         @click="toggle(tag)"
         :class="selectTags.indexOf(tag) >= 0 && 'selected'"
       >
         <!-- :class="{selected: selectedTags.indexOf(tag)>=0}" -->
-        {{ tag }}
+        {{ tag.name }}
       </li>
     </ul>
   </div>

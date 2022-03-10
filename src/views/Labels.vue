@@ -1,8 +1,8 @@
 <template>
   <layout>
     <ol class="tags">
-      <li v-for="item in tags" :key="item">
-        <span>{{ item }}</span>
+      <li v-for="item in tags" :key="item.id">
+        <span>{{ item.name }}</span>
         <Icon name="right" />
       </li>
     </ol>
@@ -16,9 +16,11 @@
 import Icon from "@/components/Icon.vue";
 import Layout from "@/components/Layout.vue";
 import tagListModel from "@/models/tagListModel";
+import { nanoid } from "nanoid";
 
 // 每次先提前获取一下| 这句必须在tags定义之前执行
 tagListModel.fetch();
+console.log(nanoid());
 
 import Vue from "vue";
 import { Component } from "vue-property-decorator";

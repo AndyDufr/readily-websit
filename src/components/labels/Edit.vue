@@ -1,5 +1,5 @@
 <template>
-  <div>编辑标签</div>
+  <layout>1 </layout>
 </template>
 
 <script lang="ts">
