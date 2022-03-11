@@ -1,8 +1,8 @@
 <template>
   <div>
     <label class="notes">
-      <span class="name">备注</span>
-      <input type="text" placeholder="在这里输入备注" v-model="value1" />
+      <span class="name">{{ filedName }}</span>
+      <input type="text" :placeholder="placeholder" v-model="value1" />
     </label>
   </div>
 </template>
@@ -14,6 +14,8 @@ import { Component, Watch, Prop } from "vue-property-decorator";
 @Component
 export default class Notes extends Vue {
   @Prop() readonly value!: string;
+  @Prop({ required: true }) readonly filedName!: string;
+  @Prop() readonly placeholder?: string; // 如果不传是 undefined，所以要用问号
   value1 = this.value;
   @Watch("value1")
   updateValue(newValue: string): void {

@@ -1,12 +1,25 @@
 <template>
-  <layout>1 </layout>
+  <layout>
+    <div>
+      <Icon name="left" />
+      <span>编辑标签</span>
+    </div>
+    <Notes
+      filedName="标签名"
+      placeholder="请输入标签名"
+      :value.sync="tagName"
+    />
+  </layout>
 </template>
 
 <script lang="ts">
 import tagListModel from "@/models/tagListModel";
+import Notes from "@/components/money/Notes.vue";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-@Component
+@Component({
+  components: { Notes },
+})
 export default class Edit extends Vue {
   created(): void {
     // 通过 this.$route.id 来获取地址栏中的 id。id 是在路由中的 :id 占位符来定义的
