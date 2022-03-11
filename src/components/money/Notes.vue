@@ -29,13 +29,12 @@ export default class Notes extends Vue {
   display: flex;
   align-items: center;
   font-size: 14px;
-  background: #f5f5f5;
   padding-left: 16px;
   .name {
     padding-right: 16px;
   }
   input {
-    height: 64px;
+    height: 40px;
     flex-grow: 1;
     background: transparent;
     border: none;
