@@ -12,7 +12,7 @@
       </router-link>
     </div>
     <div class="createTag-wrapper">
-      <button class="createTag" @click="createTag">新增标签</button>
+      <Button @click.native="createTag" class="createTag">新增标签</Button>
     </div>
   </layout>
 </template>
@@ -21,13 +21,14 @@
 import Icon from "@/components/Icon.vue";
 import Layout from "@/components/Layout.vue";
 import tagListModel from "@/models/tagListModel";
+import Button from "@/components/Button.vue";
 
 // 每次先提前获取一下| 这句必须在tags定义之前执行
 tagListModel.fetch();
 
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-@Component({ components: { Layout, Icon } })
+@Component({ components: { Layout, Icon, Button } })
 export default class Labels extends Vue {
   tags = tagListModel.data;
   createTag(): void {
@@ -39,6 +40,8 @@ export default class Labels extends Vue {
       } else if (result === "seccess") {
         window.alert("添加成功");
       }
+    } else {
+      window.alert("标签名不能为空");
     }
   }
 }
