@@ -20,6 +20,22 @@ const tagListModel: tagListModel = {
         this.save();
         return 'seccess'
 
+    },
+    updateTag(id, name) {
+        const idList = this.data.map(item => item.id)
+        if (idList.indexOf(id) >= 0) {
+            const names = this.data.map(item => item.name)
+            if (names.indexOf(name) >= 0) {
+                return 'duplicated'
+            } else {
+                const tag = this.data.filter(item => item.id === id)[0]
+                tag.name = name
+                this.save()
+                return 'seccess'
+            }
+        } else {
+            return 'not found'
+        }
     }
 }
 export default tagListModel

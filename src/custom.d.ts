@@ -14,4 +14,5 @@ type tagListModel = {
     fetch: () => RecordItem[],
     save: () => void,
     create: (name: string) => 'seccess' | 'duplicated'
+    updateTag: (id: string, name: string) => 'seccess' | 'duplicated' | 'not found'
 }

@@ -9,7 +9,8 @@
       <Notes
         filedName="标签名"
         placeholder="请输入标签名"
-        :value.sync="tagName.name"
+        :value="tagName.name"
+        @update:value="updateTag"
       />
     </div>
     <div class="button-wrapper">
@@ -43,6 +44,9 @@ export default class Edit extends Vue {
     } else {
       this.$router.replace("/404");
     }
+  }
+  updateTag(name: string): void {
+    if (this.tagName) tagListModel.updateTag(this.tagName.id, name);
   }
 }
 </script>
