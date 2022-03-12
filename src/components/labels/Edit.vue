@@ -9,7 +9,7 @@
       <Notes
         filedName="标签名"
         placeholder="请输入标签名"
-        :value.sync="tagName"
+        :value.sync="tagName.name"
       />
     </div>
     <div class="button-wrapper">
@@ -28,6 +28,7 @@ import { Component } from "vue-property-decorator";
   components: { Notes, Button },
 })
 export default class Edit extends Vue {
+  tagName?: { id: string; name: string } = undefined;
   created(): void {
     // 通过 this.$route.id 来获取地址栏中的 id。id 是在路由中的 :id 占位符来定义的
     const id = this.$route.params.id;
@@ -38,6 +39,7 @@ export default class Edit extends Vue {
     const tag = tags.filter((item) => item.id === id)[0];
     if (tag) {
       console.log(tag);
+      this.tagName = tag;
     } else {
       this.$router.replace("/404");
     }
@@ -53,8 +55,7 @@ export default class Edit extends Vue {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  > .title {
-  }
+
   > .leftIcon {
     width: 24px;
     height: 24px;
