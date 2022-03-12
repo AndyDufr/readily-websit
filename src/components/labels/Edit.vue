@@ -14,7 +14,7 @@
       />
     </div>
     <div class="button-wrapper">
-      <Button> 删除标签 </Button>
+      <Button @click.native="removeTag"> 删除标签 </Button>
     </div>
   </layout>
 </template>
@@ -47,6 +47,10 @@ export default class Edit extends Vue {
   }
   updateTag(name: string): void {
     if (this.tagName) tagListModel.updateTag(this.tagName.id, name);
+  }
+  removeTag(): void {
+    if (this.tagName) tagListModel.removeTag(this.tagName.id);
+    this.$router.replace("/labels");
   }
 }
 </script>

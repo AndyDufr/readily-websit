@@ -36,6 +36,17 @@ const tagListModel: tagListModel = {
         } else {
             return 'not found'
         }
+    },
+    removeTag(id) {
+        let index = -1
+        for (let i = 0; i < this.data.length; i++) {
+            if (this.data[i].id === id) {
+                index = i
+                break
+            }
+        }
+        this.data.splice(index, 1)
+        this.save()
     }
 }
 export default tagListModel

@@ -15,4 +15,5 @@ type tagListModel = {
     save: () => void,
     create: (name: string) => 'seccess' | 'duplicated'
     updateTag: (id: string, name: string) => 'seccess' | 'duplicated' | 'not found'
+    removeTag: (id: string) => void
 }
