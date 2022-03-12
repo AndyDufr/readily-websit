@@ -82,3 +82,15 @@
 
 * 如何将一个 ts 声明的类型进行全局声明
 * 将类型声明代码移至根目录( src 目录)下 cunstom.d.ts (名字不重要),不需要引入
+
+* vue 的 deep 语法
+* 当使用了一个通用组件，但是组件的 css 需要更改时，在外界无法影响组件内的样式，需要使用 deep
+```javascript
+    <Types class="x">
+    ...
+    <style>
+        .x ::v-deep li {
+            background: red;
+        }
+    </style>
+```
