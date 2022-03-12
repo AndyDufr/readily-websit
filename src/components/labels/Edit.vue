@@ -53,7 +53,7 @@ export default class Edit extends Vue {
     this.$router.replace("/labels");
   }
   goBack(): void {
-    this.$router.back();
+    this.$router.replace("/labels");
   }
 }
 </script>
