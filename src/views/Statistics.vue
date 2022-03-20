@@ -3,6 +3,7 @@
     <Types :value.sync="value" class-prefix="xx" />
     <!-- <Tabs :dataSource="secondArray" :value.sync="toggleType" /> -->
     <Tabs :dataSource="thirdArray" :value.sync="toggleDate" />
+    <div>{{ toggleDate }}{{ value }}</div>
   </layout>
 </template>
 
@@ -17,17 +18,17 @@ import { Component } from "vue-property-decorator";
 })
 export default class Statistics extends Vue {
   value = "-";
-  secondArray = [
-    { text: "收入", value: "+" },
-    { text: "支出", value: "-" },
-  ];
+  // secondArray = [
+  //   { text: "收入", value: "+" },
+  //   { text: "支出", value: "-" },
+  // ];
   thirdArray = [
     { text: "按天", value: "day" },
     { text: "按周", value: "week" },
     { text: "按月", value: "month" },
   ];
   toggleDate = "day";
-  toggleType = "-";
+  // toggleType = "-";
 }
 </script>
 
