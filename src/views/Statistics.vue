@@ -1,6 +1,6 @@
 <template>
   <layout>
-    <Types class="x" :value.sync="value" />
+    <Types :value.sync="value" class-prefix="xxx" />
   </layout>
 </template>
 
@@ -18,7 +18,7 @@ export default class Statistics extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.x ::v-deep li {
+::v-deep .xxx-item {
   background: #fff;
   &.selected {
     background: #c4c4c4;
@@ -29,7 +29,7 @@ export default class Statistics extends Vue {
       left: 0;
       width: 100%;
       height: 4px;
-      background: #fff;
+      background: #c4c4c4;
     }
   }
 }
