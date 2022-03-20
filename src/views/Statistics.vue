@@ -11,6 +11,7 @@
 import Layout from "@/components/Layout.vue";
 import Types from "@/components/money/Types.vue";
 import Tabs from "@/components/Tabs.vue";
+import toggleDate from "@/constants/toggleDate";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 @Component({
@@ -27,7 +28,7 @@ export default class Statistics extends Vue {
     { text: "按周", value: "week" },
     { text: "按月", value: "month" },
   ];
-  toggleDate = "day";
+  toggleDate = toggleDate;
   // toggleType = "-";
 }
 </script>
