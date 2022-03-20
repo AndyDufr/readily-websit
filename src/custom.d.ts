@@ -17,3 +17,7 @@ type tagListModel = {
     updateTag: (id: string, name: string) => 'seccess' | 'duplicated' | 'not found'
     removeTag: (id: string) => void
 }
+type DataSourceItem = {
+    text: string,
+    value: string
+}

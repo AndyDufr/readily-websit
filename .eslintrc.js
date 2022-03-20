@@ -1,6 +1,7 @@
 module.exports = {
   "globals": {
-    "RecordItem": true
+    "RecordItem": true,
+    'DataSourceItem': true
   },
   root: true,
   env: {

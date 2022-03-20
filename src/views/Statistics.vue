@@ -1,35 +1,44 @@
 <template>
   <layout>
-    <Types :value.sync="value" class-prefix="xxx" />
+    <Types :value.sync="value" class-prefix="xx" />
+    <!-- <Tabs :dataSource="secondArray" :value.sync="toggleType" /> -->
+    <Tabs :dataSource="thirdArray" :value.sync="toggleDate" />
   </layout>
 </template>
 
 <script lang="ts">
 import Layout from "@/components/Layout.vue";
 import Types from "@/components/money/Types.vue";
+import Tabs from "@/components/Tabs.vue";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 @Component({
-  components: { Layout, Types },
+  components: { Layout, Types, Tabs },
 })
 export default class Statistics extends Vue {
   value = "-";
+  secondArray = [
+    { text: "收入", value: "+" },
+    { text: "支出", value: "-" },
+  ];
+  thirdArray = [
+    { text: "按天", value: "day" },
+    { text: "按周", value: "week" },
+    { text: "按月", value: "month" },
+  ];
+  toggleDate = "day";
+  toggleType = "-";
 }
 </script>
 
 <style lang="scss" scoped>
-::v-deep .xxx-item {
-  background: #fff;
+::v-deep .xx-item {
+  background: #c4c4c4;
   &.selected {
-    background: #c4c4c4;
+    background: #fff;
+    color: red;
     &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: #c4c4c4;
+      display: none;
     }
   }
 }
