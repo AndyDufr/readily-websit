@@ -32,13 +32,24 @@ import { Component } from "vue-property-decorator";
 export default class Labels extends Vue {
   tags = tagListModel.data;
   createTag(): void {
+    // const name = window.prompt("请输入标签名");
+    // if (name) {
+    //   const result = tagListModel.create(name);
+    //   if (result === "duplicated") {
+    //     window.alert("标签名重复");
+    //   } else if (result === "seccess") {
+    //     window.alert("添加成功");
+    //   }
+    // } else {
+    //   window.alert("标签名不能为空");
+    // }
     const name = window.prompt("请输入标签名");
     if (name) {
       const result = tagListModel.create(name);
-      if (result === "duplicated") {
+      if (result === "seccess") {
+        window.alert("创建成功");
+      } else if (result === "duplicated") {
         window.alert("标签名重复");
-      } else if (result === "seccess") {
-        window.alert("添加成功");
       }
     } else {
       window.alert("标签名不能为空");

@@ -1,18 +1,16 @@
 <template>
-  <div>
-    <ul class="tabTypes">
-      <li
-        v-for="item in dataSource"
-        :key="item.value"
-        @click="select(item)"
-        :class="{
-          selected: item.value === value,
-        }"
-      >
-        {{ item.text }}
-      </li>
-    </ul>
-  </div>
+  <ul class="tabTypes">
+    <li
+      v-for="item in dataSource"
+      :key="item.value"
+      @click="select(item)"
+      :class="{
+        selected: item.value === value,
+      }"
+    >
+      {{ item.text }}
+    </li>
+  </ul>
 </template>
 <script lang="ts">
 import Vue from "vue";
@@ -38,7 +36,7 @@ export default class Types extends Vue {
   > li {
     width: 50%;
     display: flex;
-    height: 64px;
+    height: 48px;
     justify-content: center;
     align-items: center;
     position: relative;

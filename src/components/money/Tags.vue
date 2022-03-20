@@ -7,8 +7,8 @@
       <li
         v-for="tag in dataSource"
         :key="tag.id"
-        @click="toggle(tag)"
-        :class="selectTags.indexOf(tag) >= 0 && 'selected'"
+        @click="toggle(tag.name)"
+        :class="selectTags.indexOf(tag.name) >= 0 && 'selected'"
       >
         <!-- :class="{selected: selectedTags.indexOf(tag)>=0}" -->
         {{ tag.name }}
@@ -21,7 +21,6 @@
 import tagListModel from "@/models/tagListModel";
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
-
 @Component
 export default class Tags extends Vue {
   @Prop(Array) readonly dataSource: string[] | undefined;
@@ -51,6 +50,7 @@ export default class Tags extends Vue {
     } else {
       window.alert("标签名不能为空");
     }
+
     // if (name === "") {
     //   window.alert("标签名不能为空");
     // } else {

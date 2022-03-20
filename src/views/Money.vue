@@ -9,7 +9,8 @@
         placeholder="请输入备注"
       />
     </div>
-    <Tags :dataSource.sync="tags" />
+    <Tags :dataSource.sync="tags" @update:value="onUpdateTags" />
+    <br />
   </layout>
 </template>
 
@@ -24,13 +25,11 @@ import tagListModel from "@/models/tagListModel";
 import { Component, Watch } from "vue-property-decorator";
 const tagList = tagListModel.fetch();
 const recordList = recordListModel.fetch();
+
 @Component({
   components: { Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
-  created(): void {
-    this.$forceUpdate();
-  }
   tags = tagList;
   record: RecordItem = {
     tags: [],
@@ -43,7 +42,9 @@ export default class Money extends Vue {
   onUpdateNotes(value: string): void {
     this.record.notes = value;
   }
-
+  onUpdateTags(value: string[]): void {
+    this.record.tags = value;
+  }
   submit(): void {
     if (this.record.tags.length === 0) {
       window.alert("请至少选择一个标签");

@@ -2,8 +2,8 @@
   <layout>
     <Types :value.sync="value" class-prefix="xx" />
     <!-- <Tabs :dataSource="secondArray" :value.sync="toggleType" /> -->
-    <Tabs :dataSource="thirdArray" :value.sync="toggleDate" />
-    <div>{{ toggleDate }}{{ value }}</div>
+    <Tabs :dataSource="toggleDate" :value.sync="interval" />
+    <div>{{ recordList }}</div>
   </layout>
 </template>
 
@@ -12,6 +12,7 @@ import Layout from "@/components/Layout.vue";
 import Types from "@/components/money/Types.vue";
 import Tabs from "@/components/Tabs.vue";
 import toggleDate from "@/constants/toggleDate";
+import recordList from "@/models/recordList";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 @Component({
@@ -23,13 +24,11 @@ export default class Statistics extends Vue {
   //   { text: "收入", value: "+" },
   //   { text: "支出", value: "-" },
   // ];
-  thirdArray = [
-    { text: "按天", value: "day" },
-    { text: "按周", value: "week" },
-    { text: "按月", value: "month" },
-  ];
+  interval = "day";
   toggleDate = toggleDate;
   // toggleType = "-";
+
+  recordList = recordList.fetch();
 }
 </script>
 
