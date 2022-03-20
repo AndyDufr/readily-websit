@@ -16,9 +16,11 @@
 import Vue from "vue";
 import Icon from "./Icon.vue";
 
-export default Vue.extend({
+import { Component } from "vue-property-decorator";
+@Component({
   components: { Icon },
-});
+})
+export default class Nav extends Vue {}
 </script>
 
 <style lang="scss" scoped>

@@ -19,7 +19,6 @@ const tagListModel: tagListModel = {
         this.data.push({ id: nanoid(), name: name })
         this.save();
         return 'seccess'
-
     },
     updateTag(id, name) {
         const idList = this.data.map(item => item.id)

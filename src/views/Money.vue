@@ -28,6 +28,9 @@ const recordList = recordListModel.fetch();
   components: { Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
+  created(): void {
+    this.$forceUpdate();
+  }
   tags = tagList;
   record: RecordItem = {
     tags: [],

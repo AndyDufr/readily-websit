@@ -48,6 +48,8 @@ export default class Tags extends Vue {
       } else if (result === "duplicated") {
         window.alert("标签名重复");
       }
+    } else {
+      window.alert("标签名不能为空");
     }
     // if (name === "") {
     //   window.alert("标签名不能为空");
