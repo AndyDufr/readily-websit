@@ -10,7 +10,7 @@
       />
     </div>
     <Tags :dataSource.sync="tags" @update:value="onUpdateTags" />
-    <br />
+    {{ tags }}
   </layout>
 </template>
 
@@ -23,21 +23,20 @@ import NumberPad from "@/components/money/NumberPad.vue";
 import recordListModel from "@/models/recordList";
 import tagListModel from "@/models/tagListModel";
 import { Component, Watch } from "vue-property-decorator";
-const tagList = tagListModel.fetch();
-const recordList = recordListModel.fetch();
 
 @Component({
   components: { Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
-  tags = tagList;
+  tags = tagListModel.fetch();
+
   record: RecordItem = {
     tags: [],
     notes: "",
     type: "-",
     amount: 0,
   };
-  recordList = recordList;
+  recordList = recordListModel.fetch();
 
   onUpdateNotes(value: string): void {
     this.record.notes = value;
