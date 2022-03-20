@@ -10,7 +10,6 @@
       />
     </div>
     <Tags :dataSource.sync="tags" @update:value="onUpdateTags" />
-    {{ tags }}
   </layout>
 </template>
 
@@ -29,7 +28,6 @@ import { Component, Watch } from "vue-property-decorator";
 })
 export default class Money extends Vue {
   tags = tagListModel.fetch();
-
   record: RecordItem = {
     tags: [],
     notes: "",
