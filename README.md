@@ -97,3 +97,10 @@
 
 * 03/20 遇到一个 bug，labels 页面新增的标签，切换回 money 页面不会自动更新页面
 * 目前不清楚为什么 vue 没有调用更新，解决方法是在 money 页面重新挂载前，调用一下 this.$forceUpdate(),强制更新
+
+* 使用 Object.freeze() 包裹一个变量，使其变为真正的常量
+```javascript
+    const intervalList = Object.freeze([
+        {text:'按天',value:'day'}
+    ])
+```
