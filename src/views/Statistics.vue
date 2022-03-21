@@ -3,7 +3,11 @@
     <Types :value.sync="value" class-prefix="xx" />
     <!-- <Tabs :dataSource="secondArray" :value.sync="toggleType" /> -->
     <Tabs :dataSource="toggleDate" :value.sync="interval" />
-    <div>{{ result }}</div>
+    <ol>
+      <li v-for="item in result" :key="item.id">
+        {{ item }}
+      </li>
+    </ol>
   </layout>
 </template>
 
@@ -12,6 +16,7 @@ import Layout from "@/components/Layout.vue";
 import Types from "@/components/money/Types.vue";
 import Tabs from "@/components/Tabs.vue";
 import toggleDate from "@/constants/toggleDate";
+import store from "@/store/myStore";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 @Component({
@@ -20,11 +25,16 @@ import { Component } from "vue-property-decorator";
 export default class Statistics extends Vue {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get recordList() {
-    return this.$store.state.recordList;
+    return store.recordList;
   }
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get result() {
-    return this.recordList;
+    const { recordList } = this;
+    const hashTabel = {};
+    for (let i = 0; i < recordList.length; i++) {
+      console.log(recordList[i].time);
+    }
+    return [];
   }
   value = "-";
   // secondArray = [

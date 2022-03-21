@@ -28,6 +28,10 @@ import store from "@/store/myStore";
 })
 export default class Money extends Vue {
   tags = tagListModel.fetch();
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  // get recordList1() {
+  //   return store.recordList;
+  // }
   recordList = store.recordList;
   record: RecordItem = {
     tags: [],

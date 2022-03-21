@@ -13,7 +13,7 @@ const recordList = {
     },
 
     create(record: RecordItem): void {
-        record.time = new Date();
+        record.time = new Date().toDateString();
         // 此处必须要对源数据进行深拷贝之后再存入数据库
         const recordDeepCope = deepCope(record);
         this.data.push(recordDeepCope);
