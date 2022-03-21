@@ -22,9 +22,12 @@ type DataSourceItem = {
     value: string
 }
 interface Window {
-    createTag: (name: string) => void
-    removeTag: (id: string) => void
-    updateTag: (id: string, name: string) => 'seccess' | 'duplicated' | 'not found'
-    recordList: RecordItem[]
-    create: (record: Record) => void
+    store: {
+        tagList: tag[]
+        createTag: (name: string) => void
+        removeTag: (id: string) => void
+        updateTag: (id: string, name: string) => 'seccess' | 'duplicated' | 'not found'
+        recordList: RecordItem[]
+        create: (record: Record) => void
+    }
 }

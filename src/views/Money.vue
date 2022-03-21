@@ -19,16 +19,15 @@ import Tags from "@/components/money/Tags.vue";
 import Notes from "@/components/money/Notes.vue";
 import Types from "@/components/money/Types.vue";
 import NumberPad from "@/components/money/NumberPad.vue";
-import recordListModel from "@/models/recordList";
 import tagListModel from "@/models/tagListModel";
-import { Component, Watch } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 
 @Component({
   components: { Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
   tags = tagListModel.fetch();
-  recordList = window.recordList;
+  recordList = window.store.recordList;
   record: RecordItem = {
     tags: [],
     notes: "",
@@ -51,7 +50,7 @@ export default class Money extends Vue {
       window.alert("请输入正确的金额");
       return;
     }
-    window.create(this.record);
+    window.store.create(this.record);
   }
   // @Watch("recordList")  因为所有操作都已经被封装了，所以不需要监听？？
   // onRecordListChange(): void {

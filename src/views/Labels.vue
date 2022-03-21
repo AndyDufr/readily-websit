@@ -21,17 +21,14 @@
 <script lang="ts">
 import Icon from "@/components/Icon.vue";
 import Layout from "@/components/Layout.vue";
-import tagListModel from "@/models/tagListModel";
 import Button from "@/components/Button.vue";
-
-// 每次先提前获取一下| 这句必须在tags定义之前执行
-tagListModel.fetch();
 
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import tagListModel from "@/models/tagListModel";
 @Component({ components: { Layout, Icon, Button } })
 export default class Labels extends Vue {
-  tags = tagListModel.data;
+  tags = tagListModel.fetch();
   createTag(): void {
     // const name = window.prompt("请输入标签名");
     // if (name) {
@@ -46,7 +43,7 @@ export default class Labels extends Vue {
     // }
     const name = window.prompt("请输入标签名");
     if (name) {
-      window.createTag(name);
+      window.store.createTag(name);
     }
   }
 }
