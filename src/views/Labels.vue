@@ -12,9 +12,8 @@
       </router-link>
     </div>
     <div class="createTag-wrapper">
-      <button @click="createTag" class="createTag">新增标签1</button>
-      <!-- <br />
-      <Button @click.native="createTag" class="createTag">新增标签</Button> -->
+      <!-- <button @click="createTag" class="createTag">新增标签1</button> -->
+      <Button @click.native="createTag" class="createTag">新增标签</Button>
     </div>
   </layout>
 </template>
