@@ -7,8 +7,8 @@
       <li
         v-for="tag in dataSource"
         :key="tag.id"
-        @click="toggle(tag.name)"
-        :class="selectTags.indexOf(tag.name) >= 0 && 'selected'"
+        @click="toggle(tag)"
+        :class="selectTags.indexOf(tag) >= 0 && 'selected'"
       >
         <!-- :class="{selected: selectedTags.indexOf(tag)>=0}" -->
         {{ tag.name }}
@@ -23,9 +23,9 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class Tags extends Vue {
-  @Prop(Array) readonly dataSource: string[] | undefined;
-  selectTags: string[] = [];
-  toggle(tag: string): void {
+  @Prop(Array) readonly dataSource: [] | undefined;
+  selectTags: { id: string; name: string }[] = [];
+  toggle(tag: { id: string; name: string }): void {
     const index = this.selectTags.indexOf(tag);
     if (index >= 0) {
       this.selectTags.splice(index, 1);

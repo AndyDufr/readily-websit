@@ -51,7 +51,7 @@ export default class Money extends Vue {
       window.alert("请输入正确的金额");
       return;
     }
-    window.store.create(this.record);
+    store.create(this.record);
   }
   // @Watch("recordList")  因为所有操作都已经被封装了，所以不需要监听？？
   // onRecordListChange(): void {

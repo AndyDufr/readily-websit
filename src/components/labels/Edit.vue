@@ -41,8 +41,6 @@ export default class Edit extends Vue {
     } else {
       this.$router.replace("/404");
     }
-    console.log(id);
-    console.log(tags);
   }
   updateTag(name: string): void {
     if (this.tagName) {

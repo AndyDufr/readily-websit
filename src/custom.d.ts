@@ -11,7 +11,7 @@ type Tag = {
 }
 type tagListModel = {
     data: tag[]
-    fetch: () => RecordItem[],
+    fetch: () => Tag[],
     save: () => void,
     create: (name: string) => 'seccess' | 'duplicated'
     updateTag: (id: string, name: string) => 'seccess' | 'duplicated' | 'not found'

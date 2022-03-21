@@ -4,7 +4,7 @@ import recordList from '@/models/recordList'
 
 const store = {
     // tagListModel
-    tagList: tagListModel.data,
+    tagList: tagListModel.fetch(),
     createTag: (name: string) => {
         const result = tagListModel.create(name);
         if (result === "seccess") {
