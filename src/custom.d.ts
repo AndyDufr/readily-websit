@@ -21,3 +21,6 @@ type DataSourceItem = {
     text: string,
     value: string
 }
+interface Window {
+    createTag: (name: string) => void
+}
