@@ -39,18 +39,21 @@ export default class Edit extends Vue {
     // 通过 filter 找出数据库中 标签的 id 和地址栏的 id 一样的标签
     const tag = tags.filter((item) => item.id === id)[0];
     if (tag) {
-      console.log(tag);
       this.tagName = tag;
     } else {
       this.$router.replace("/404");
     }
   }
   updateTag(name: string): void {
-    if (this.tagName) tagListModel.updateTag(this.tagName.id, name);
+    if (this.tagName) {
+      window.updateTag(this.tagName.id, name);
+    }
   }
   removeTag(): void {
-    if (this.tagName) tagListModel.removeTag(this.tagName.id);
-    this.$router.replace("/labels");
+    if (this.tagName) {
+      window.removeTag(this.tagName.id);
+      this.$router.replace("/labels");
+    }
   }
   goBack(): void {
     this.$router.replace("/labels");

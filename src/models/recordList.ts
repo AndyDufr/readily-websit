@@ -17,6 +17,7 @@ const recordList = {
         // 此处必须要对源数据进行深拷贝之后再存入数据库
         const recordDeepCope = deepCope(record);
         this.data.push(recordDeepCope);
+        this.save()
     }
 }
 export default recordList

@@ -23,4 +23,8 @@ type DataSourceItem = {
 }
 interface Window {
     createTag: (name: string) => void
+    removeTag: (id: string) => void
+    updateTag: (id: string, name: string) => 'seccess' | 'duplicated' | 'not found'
+    recordList: RecordItem[]
+    create: (record: Record) => void
 }
