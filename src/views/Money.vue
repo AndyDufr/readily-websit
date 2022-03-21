@@ -51,14 +51,11 @@ export default class Money extends Vue {
       window.alert("请输入正确的金额");
       return;
     }
-    this.record.time = new Date();
-    // 此处必须要对源数据进行深拷贝之后再存入数据库
-    const recordDeepCope = recordListModel.deepCope(this.record);
-    this.recordList.push(recordDeepCope);
+    recordListModel.create(this.record);
   }
   @Watch("recordList")
   onRecordListChange(): void {
-    recordListModel.save(this.recordList);
+    recordListModel.save();
   }
 }
 </script>

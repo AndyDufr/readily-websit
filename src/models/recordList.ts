@@ -1,15 +1,22 @@
+import deepCope from "@/lib/deepCope";
 const loaclStorageKeyName = 'recordList'
 const recordList = {
+    data: [] as RecordItem[],
     fetch(): RecordItem[] {
-        return JSON.parse(
+        this.data = JSON.parse(
             window.localStorage.getItem(loaclStorageKeyName) || "[]"
         );
+        return this.data
     },
-    save(recordList: RecordItem[]): void {
-        window.localStorage.setItem(loaclStorageKeyName, JSON.stringify(recordList));
+    save(): void {
+        window.localStorage.setItem(loaclStorageKeyName, JSON.stringify(this.data));
     },
-    deepCope(data: RecordItem | RecordItem[]): RecordItem {
-        return JSON.parse(JSON.stringify(data));
+
+    create(record: RecordItem): void {
+        record.time = new Date();
+        // 此处必须要对源数据进行深拷贝之后再存入数据库
+        const recordDeepCope = deepCope(record);
+        this.data.push(recordDeepCope);
     }
 }
 export default recordList
