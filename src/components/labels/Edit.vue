@@ -24,6 +24,7 @@ import Notes from "@/components/money/Notes.vue";
 import Button from "@/components/Button.vue";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import store from "@/store/myStore";
 @Component({
   components: { Notes, Button },
 })
@@ -32,7 +33,7 @@ export default class Edit extends Vue {
   created(): void {
     // 通过 this.$route.id 来获取地址栏中的 id。id 是在路由中的 :id 占位符来定义的
     const id = this.$route.params.id;
-    const tags = window.store.tagList;
+    const tags = store.tagList;
     // 通过 filter 找出数据库中 标签的 id 和地址栏的 id 一样的标签
     const tag = tags.filter((item) => item.id === id)[0];
     if (tag) {
@@ -40,15 +41,17 @@ export default class Edit extends Vue {
     } else {
       this.$router.replace("/404");
     }
+    console.log(id);
+    console.log(tags);
   }
   updateTag(name: string): void {
     if (this.tagName) {
-      window.store.updateTag(this.tagName.id, name);
+      store.updateTag(this.tagName.id, name);
     }
   }
   removeTag(): void {
     if (this.tagName) {
-      window.store.removeTag(this.tagName.id);
+      store.removeTag(this.tagName.id);
       this.$router.replace("/labels");
     }
   }

@@ -6,34 +6,6 @@ import store from './store'
 import Nav from '@/components/Nav.vue'
 import Icon from '@/components/Icon.vue'
 import Layout from '@/components/Layout.vue'
-import tagListModel from './models/tagListModel'
-import recordList from './models/recordList'
-
-window.store = {
-  // tagListModel
-  tagList: tagListModel.fetch(),
-  createTag: (name: string) => {
-    const result = tagListModel.create(name);
-    if (result === "seccess") {
-      window.alert("创建成功");
-    } else if (result === "duplicated") {
-      window.alert("标签名重复");
-    } else {
-      window.alert("标签名不能为空");
-    }
-  },
-  removeTag: (id: string) => {
-    return tagListModel.removeTag(id);
-  },
-  updateTag: (id: string, name: string) => {
-    return tagListModel.updateTag(id, name);
-  },
-  // record store
-  recordList: recordList.fetch(),
-  create: (record) => {
-    recordList.create(record);
-  }
-}
 
 
 Vue.component('Nav', Nav)

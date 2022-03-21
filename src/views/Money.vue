@@ -21,13 +21,14 @@ import Types from "@/components/money/Types.vue";
 import NumberPad from "@/components/money/NumberPad.vue";
 import tagListModel from "@/models/tagListModel";
 import { Component } from "vue-property-decorator";
+import store from "@/store/myStore";
 
 @Component({
   components: { Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
   tags = tagListModel.fetch();
-  recordList = window.store.recordList;
+  recordList = store.recordList;
   record: RecordItem = {
     tags: [],
     notes: "",

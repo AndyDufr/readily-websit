@@ -26,6 +26,7 @@ import Button from "@/components/Button.vue";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import tagListModel from "@/models/tagListModel";
+import store from "@/store/myStore";
 @Component({ components: { Layout, Icon, Button } })
 export default class Labels extends Vue {
   tags = tagListModel.fetch();
@@ -43,7 +44,7 @@ export default class Labels extends Vue {
     // }
     const name = window.prompt("请输入标签名");
     if (name) {
-      window.store.createTag(name);
+      store.createTag(name);
     }
   }
 }
