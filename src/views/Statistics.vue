@@ -89,7 +89,11 @@ export default class Statistics extends Vue {
     } else if (api.isSame(now.valueOf() - 86400 * 1000 * 2, "day")) {
       return "前天";
     } else {
-      return dayjs(string).format("YYYY年MM月DD日");
+      if (dayjs(string).isSame(dayjs(), "year")) {
+        return dayjs(string).format("MM月DD日");
+      } else {
+        return dayjs(string).format("YYYY年MM月DD日");
+      }
     }
   }
 }
