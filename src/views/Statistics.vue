@@ -9,7 +9,7 @@
 
       <ol class="main">
         <li v-for="(group, index) in result" :key="index">
-          <h3 class="title">{{ group.title }}</h3>
+          <h3 class="title">{{ beautify(group.title) }}</h3>
           <ol>
             <li v-for="item in group.items" :key="item.id" class="record">
               <span>{{ item.tags[0].name }}</span>
@@ -33,6 +33,7 @@ import toggleDate from "@/constants/toggleDate";
 import store from "@/store/myStore";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
+import dayjs from "dayjs";
 @Component({
   components: { Layout, Types, Tabs },
 })
@@ -64,6 +65,29 @@ export default class Statistics extends Vue {
   interval = "day";
   toggleDate = toggleDate;
   // toggleType = "-";
+  beautify(string: string): string {
+    // const now = new Date();
+    // const y = now.getFullYear();
+    // const m = now.getMonth() + 1;
+    // const d = now.getDay();
+    // const record = new Date(Date.parse(string));
+    // if (
+    //   record.getFullYear() === y &&
+    //   record.getMonth() + 1 === m &&
+    //   record.getDay() === d
+    // ) {
+    //   return "今天";
+    // } else {
+    //   return string;
+    // }
+    const api = dayjs(string);
+    const now = new Date();
+    if (api.isSame(now, "day")) {
+      return "今天";
+    } else {
+      return string;
+    }
+  }
 }
 </script>
 

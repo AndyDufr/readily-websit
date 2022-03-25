@@ -132,3 +132,16 @@
     overflow: auto;
     }
 ```
+
+* 如何获得一个 ISO 8601
+`new Date().toISOString()`
+`Date.parse(new Date().toISOString())` 得到一串数字
+`new Date(Date.parse(new Date().toISOString())).getHours()` 传回 new Date 得到当前时间
+Day.js  轻量级处理时间库
+```javascript
+    dayjs() //调用 dayjs() 得到一个对时间封装的对象
+        .startOf('month')
+        .add(1, 'day') // 加一天
+        .set('year', 2022) // 设置年份为 2022
+        .format('YYYY-MM-DD HH:mm:ss') // 输出的格式
+```
