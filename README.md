@@ -142,6 +142,8 @@ Day.js  轻量级处理时间库
     dayjs() //调用 dayjs() 得到一个对时间封装的对象
         .startOf('month')
         .add(1, 'day') // 加一天
+        .subtract(1,'year') // 减一年
+        .isSame(dayjs().subtract(2,'day'),'day') // 和前天是同一天
         .set('year', 2022) // 设置年份为 2022
         .format('YYYY-MM-DD HH:mm:ss') // 输出的格式
 ```

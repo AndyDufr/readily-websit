@@ -84,8 +84,12 @@ export default class Statistics extends Vue {
     const now = new Date();
     if (api.isSame(now, "day")) {
       return "今天";
+    } else if (api.isSame(now.valueOf() - 86400 * 1000, "day")) {
+      return "昨天";
+    } else if (api.isSame(now.valueOf() - 86400 * 1000 * 2, "day")) {
+      return "前天";
     } else {
-      return string;
+      return dayjs(string).format("YYYY年MM月DD日");
     }
   }
 }
