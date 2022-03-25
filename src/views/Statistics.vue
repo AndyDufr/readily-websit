@@ -1,13 +1,27 @@
 <template>
   <layout>
-    <Types :value.sync="value" class-prefix="xx" />
-    <!-- <Tabs :dataSource="secondArray" :value.sync="toggleType" /> -->
-    <Tabs :dataSource="toggleDate" :value.sync="interval" />
-    <ol>
-      <li v-for="item in result" :key="item.id">
-        {{ item }}
-      </li>
-    </ol>
+    <div class="view">
+      <div class="header">
+        <Types :value.sync="value" class-prefix="xx" />
+        <!-- <Tabs :dataSource="secondArray" :value.sync="toggleType" /> -->
+        <Tabs :dataSource="toggleDate" :value.sync="interval" />
+      </div>
+
+      <ol class="main">
+        <li v-for="(group, index) in result" :key="index">
+          <h3 class="title">{{ group.title }}</h3>
+          <ol>
+            <li v-for="item in group.items" :key="item.id" class="record">
+              <span>{{ item.tags[0].name }}</span>
+              <span :style="{ marginRight: 'auto' }" class="notesStatistics">{{
+                item.notes === "" ? "无备注" : item.notes
+              }}</span>
+              ￥{{ item.amount }}
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </div>
   </layout>
 </template>
 
@@ -30,11 +44,17 @@ export default class Statistics extends Vue {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get result() {
     const { recordList } = this;
-    const hashTabel = {};
+    type HashTabelValue = { title: string; items: RecordItem[] };
+    const hashTabel: { [key: string]: HashTabelValue } = {};
     for (let i = 0; i < recordList.length; i++) {
-      console.log(recordList[i].time);
+      const date = recordList[i].time?.split("T")[0];
+      if (date) {
+        // 初始化
+        hashTabel[date] = hashTabel[date] || { title: date, items: [] };
+        hashTabel[date].items.push(recordList[i]);
+      }
     }
-    return [];
+    return hashTabel;
   }
   value = "-";
   // secondArray = [
@@ -57,5 +77,34 @@ export default class Statistics extends Vue {
       display: none;
     }
   }
+}
+.titlt {
+  @extend %item;
+}
+.record {
+  background: #fff;
+  @extend %item;
+}
+%item {
+  padding: 8px 16px;
+  line-height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.notesStatistics {
+  margin-right: auto;
+  margin-left: 12px;
+  color: #999;
+}
+.view {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+}
+.main {
+  overflow: auto;
 }
 </style>

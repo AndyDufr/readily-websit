@@ -2,7 +2,12 @@
   <div>
     <label class="notes">
       <span class="name">{{ filedName }}</span>
-      <input type="text" :placeholder="placeholder" v-model="value1" />
+      <input
+        type="text"
+        :placeholder="placeholder"
+        v-model="value1"
+        maxlength="16"
+      />
     </label>
   </div>
 </template>
