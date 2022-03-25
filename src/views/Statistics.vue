@@ -34,6 +34,7 @@ import store from "@/store/myStore";
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import dayjs from "dayjs";
+import deepCope from "@/lib/deepCope";
 @Component({
   components: { Layout, Types, Tabs },
 })
@@ -45,17 +46,34 @@ export default class Statistics extends Vue {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get result() {
     const { recordList } = this;
-    type HashTabelValue = { title: string; items: RecordItem[] };
-    const hashTabel: { [key: string]: HashTabelValue } = {};
-    for (let i = 0; i < recordList.length; i++) {
-      const date = recordList[i].time?.split("T")[0];
-      if (date) {
-        // 初始化
-        hashTabel[date] = hashTabel[date] || { title: date, items: [] };
-        hashTabel[date].items.push(recordList[i]);
+    if (recordList.length === 0) return [];
+    const recordListSort = deepCope(recordList);
+    recordListSort.sort((a, b) => {
+      return dayjs(b.time).valueOf() - dayjs(a.time).valueOf();
+    });
+
+    type GroupListTabel = { title: string; items: RecordItem[] };
+
+    // 初始化
+    const groupListTabel: GroupListTabel[] = [
+      {
+        title: dayjs(recordListSort[0].time).format("YYYY-MM-DD"),
+        items: [recordListSort[0]],
+      },
+    ];
+    for (let i = 1; i < recordListSort.length; i++) {
+      const next = recordListSort[i];
+      const last = groupListTabel[groupListTabel.length - 1];
+      if (dayjs(last.title).isSame(dayjs(next.time), "day")) {
+        last.items.push(next);
+      } else {
+        groupListTabel.push({
+          title: dayjs(recordListSort[i].time).format("YYYY-MM-DD"),
+          items: [recordListSort[i]],
+        });
       }
     }
-    return hashTabel;
+    return groupListTabel;
   }
   value = "-";
   // secondArray = [

@@ -147,3 +147,10 @@ Day.js  轻量级处理时间库
         .set('year', 2022) // 设置年份为 2022
         .format('YYYY-MM-DD HH:mm:ss') // 输出的格式
 ```
+
+* 声明一个类型，用于函数参数是什么类型就返回什么类型
+```javascript
+    export default function deepCope<T>(data:T):T {
+    return JSON.parse(JSON.stringify(data));
+    }
+```
