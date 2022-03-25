@@ -9,7 +9,9 @@
 
       <ol class="main">
         <li v-for="(group, index) in result" :key="index">
-          <h3 class="title">{{ beautify(group.title) }}</h3>
+          <h3 class="title">
+            {{ beautify(group.title) }}<span>总计：￥{{ group.total }}</span>
+          </h3>
           <ol>
             <li v-for="item in group.items" :key="item.id" class="record">
               <span>{{ item.tags[0].name }}</span>
@@ -32,7 +34,7 @@ import Tabs from "@/components/Tabs.vue";
 import toggleDate from "@/constants/toggleDate";
 import store from "@/store/myStore";
 import Vue from "vue";
-import { Component, Watch } from "vue-property-decorator";
+import { Component } from "vue-property-decorator";
 import dayjs from "dayjs";
 import deepCope from "@/lib/deepCope";
 @Component({
@@ -62,7 +64,11 @@ export default class Statistics extends Vue {
         return dayjs(b.time).valueOf() - dayjs(a.time).valueOf();
       });
 
-    type GroupListTabel = { title: string; items: RecordItem[] };
+    type GroupListTabel = {
+      title: string;
+      items: RecordItem[];
+      total?: number;
+    };
 
     // 初始化
     const groupListTabel: GroupListTabel[] = [
@@ -83,6 +89,11 @@ export default class Statistics extends Vue {
         });
       }
     }
+    groupListTabel.map((item) => {
+      item.total = item.items.reduce((result, item) => result + item.amount, 0);
+    });
+    console.log(groupListTabel);
+
     return groupListTabel;
   }
   value = "-";
@@ -138,8 +149,11 @@ export default class Statistics extends Vue {
     }
   }
 }
-.titlt {
+.title {
   @extend %item;
+  > span {
+    font-size: 14px;
+  }
 }
 .record {
   background: #fff;

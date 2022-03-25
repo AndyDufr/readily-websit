@@ -154,3 +154,6 @@ Day.js  轻量级处理时间库
     return JSON.parse(JSON.stringify(data));
     }
 ```
+
+* 遇到 bug， statistics 页面的总计，总是以字符串拼接形式计算，原因很简单， numberPad 组件的
+* Props() 没有为 vue 注明类型，血泪教训，一定要写 Props 括号里的类型呀
