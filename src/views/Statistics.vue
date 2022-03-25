@@ -32,7 +32,7 @@ import Tabs from "@/components/Tabs.vue";
 import toggleDate from "@/constants/toggleDate";
 import store from "@/store/myStore";
 import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import { Component, Watch } from "vue-property-decorator";
 import dayjs from "dayjs";
 import deepCope from "@/lib/deepCope";
 @Component({
@@ -54,10 +54,13 @@ export default class Statistics extends Vue {
     */
     const { recordList } = this;
     if (recordList.length === 0) return [];
-    const recordListSort = deepCope(recordList);
-    recordListSort.sort((a, b) => {
-      return dayjs(b.time).valueOf() - dayjs(a.time).valueOf();
-    });
+    let recordListSort = deepCope(recordList)
+      .filter((r) => {
+        return r.type === this.value;
+      })
+      .sort((a, b) => {
+        return dayjs(b.time).valueOf() - dayjs(a.time).valueOf();
+      });
 
     type GroupListTabel = { title: string; items: RecordItem[] };
 
