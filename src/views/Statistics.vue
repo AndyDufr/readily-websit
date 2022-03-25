@@ -104,6 +104,9 @@ export default class Statistics extends Vue {
   width: 100%;
   height: 100%;
 }
+// .header {
+
+// }
 .main {
   overflow: auto;
 }

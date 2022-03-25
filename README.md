@@ -115,3 +115,20 @@
         {text:'按天',value:'day'}
     ])
 ```
+
+* H5 页面顶部固定：将页面一分为二
+```css
+    .view {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: 100%;
+    }
+    /*.header {
+
+    }*/
+    .main {
+    overflow: auto;
+    }
+```
