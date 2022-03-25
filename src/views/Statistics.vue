@@ -4,7 +4,7 @@
       <div class="header">
         <Types :value.sync="value" class-prefix="xx" />
         <!-- <Tabs :dataSource="secondArray" :value.sync="toggleType" /> -->
-        <Tabs :dataSource="toggleDate" :value.sync="interval" />
+        <!-- <Tabs :dataSource="toggleDate" :value.sync="interval" /> -->
       </div>
 
       <ol class="main">
