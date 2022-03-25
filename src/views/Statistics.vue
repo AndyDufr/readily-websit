@@ -45,6 +45,13 @@ export default class Statistics extends Vue {
   }
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   get result() {
+    /* 思路：hashTabel 是一个对象，对象并不能保证他的顺序，所以将其改为数组
+        1. 创建数组前，将数据源拷贝并以今天昨天前天的顺序依次排序
+        2. 初始化数组，将排序后的数组最近的一天放入 groupListTabel
+        3. 便利剩下的数据(从 1 开始)，分别对每一项的时间和 groupListTabel 最后一项的 title 对比，
+        是同一天，就放到 items 里，不是同一天，就新加一个 {titile:xx,items:xx} 的对象
+
+    */
     const { recordList } = this;
     if (recordList.length === 0) return [];
     const recordListSort = deepCope(recordList);
