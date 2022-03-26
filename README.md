@@ -170,4 +170,28 @@ Day.js  轻量级处理时间库
 2. 使用 serve 测试打包后的项目 安装：`yarn global add serve` 运行：`serve -s dist`
 3. 如果要部署在 github，首先要在 `vue.config.js` 中设置正确的 `publicPath`:
 `publicPath: process.env.NODE_ENV === 'production'?"/仓库名/":"/"`
-4. 
+4. 创建脚本： 创建 deploy.sh 
+```sh
+#!/usr/bin/env sh
+
+# 当发生错误时终止脚本
+set -e
+
+# 构建
+yarn build
+
+# cd 到构建输出的目录下
+cd dist
+
+# 部署到自定义域域名
+# echo 'www.example.com' > CNAME
+
+git init
+git add -A
+git commit -m 'deploy'
+
+# 部署到 https://<USERNAME>.github.io/<REPO>
+git push -f <仓库地址> master:gh-pages
+
+cd -
+```
