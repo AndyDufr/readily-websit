@@ -5,6 +5,12 @@ const tagListModel: tagListModel = {
     fetch() {
         const tags = JSON.parse(window.localStorage.getItem(loaclStorageKeyName) || '[]')
         this.data = tags
+        if (!tags || tags.length === 0) {
+            this.create('衣')
+            this.create('食')
+            this.create('住')
+            this.create('行')
+        }
         return tags
     },
     save() {

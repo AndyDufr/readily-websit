@@ -10,6 +10,7 @@ const recordList = {
     },
     save(): void {
         window.localStorage.setItem(loaclStorageKeyName, JSON.stringify(this.data));
+        window.alert('保存成功！')
     },
 
     create(record: RecordItem): void {
