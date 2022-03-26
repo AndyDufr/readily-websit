@@ -157,3 +157,10 @@ Day.js  轻量级处理时间库
 
 * 遇到 bug， statistics 页面的总计，总是以字符串拼接形式计算，原因很简单， numberPad 组件的
 * Props() 没有为 vue 注明类型，血泪教训，一定要写 Props 括号里的类型呀
+
+
+* 描述
+项目名称： 随手记
+项目描述： 随手记是一款极简的记账应用，也是一款基于 Vue2、VueRouter、TypeScript 的单页面应用，
+由单人独立实现，期间遇到很多 webpack 和 TypeScript 方面的问题，解决过程记录在本人博客[链接]
+源代码几乎完全用 TypeScript 实现，用到了装饰器语法

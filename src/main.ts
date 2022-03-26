@@ -17,3 +17,10 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+// 解决 Andriod 浏览器短屏手机显示不全的问题
+window.onload = function () {
+  setTimeout(function () {
+    window.scrollTo(0, 999)
+  }, 0)
+}
