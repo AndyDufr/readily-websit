@@ -5,7 +5,8 @@
       <input
         type="text"
         :placeholder="placeholder"
-        v-model="value1"
+        :value="value"
+        @input="onValueChang($event.target.value)"
         maxlength="16"
       />
     </label>
@@ -14,18 +15,21 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component, Watch, Prop } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 
 @Component
 export default class Notes extends Vue {
   @Prop() readonly value!: string;
   @Prop({ required: true }) readonly filedName!: string;
   @Prop() readonly placeholder?: string; // 如果不传是 undefined，所以要用问号
-  value1 = this.value;
-  @Watch("value1")
-  updateValue(newValue: string): void {
-    this.$emit("update:value", newValue);
+  // value1 = this.value;
+  onValueChang(value: string): void {
+    this.$emit("update:value", value);
   }
+  // @Watch("value")
+  // updateValue(newValue: string): void {
+  //   this.$emit("update:value", newValue);
+  // }
 }
 </script>
 

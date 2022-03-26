@@ -4,12 +4,17 @@
     <Types :value.sync="record.type" />
     <div class="notes">
       <Notes
-        :value.sync="record.notes"
+        :value="record.notes"
         filedName="备注"
         placeholder="请输入备注"
+        @update:value="onUpdateNotes"
       />
     </div>
-    <Tags :dataSource.sync="tags" @update:value="onUpdateTags" />
+    <Tags
+      :dataSource.sync="tags"
+      @update:value="onUpdateTags"
+      :value="record.tags"
+    />
   </layout>
 </template>
 
@@ -56,6 +61,8 @@ export default class Money extends Vue {
       return;
     }
     store.create(this.record);
+    this.record.tags = [];
+    this.record.notes = "";
   }
   // @Watch("recordList")  因为所有操作都已经被封装了，所以不需要监听？？
   // onRecordListChange(): void {

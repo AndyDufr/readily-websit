@@ -7,22 +7,29 @@
         <!-- <Tabs :dataSource="toggleDate" :value.sync="interval" /> -->
       </div>
 
-      <ol class="main">
-        <li v-for="(group, index) in result" :key="index">
-          <h3 class="title">
-            {{ beautify(group.title) }}<span>总计：￥{{ group.total }}</span>
-          </h3>
-          <ol>
-            <li v-for="item in group.items" :key="item.id" class="record">
-              <span>{{ item.tags[0].name }}</span>
-              <span :style="{ marginRight: 'auto' }" class="notesStatistics">{{
-                item.notes === "" ? "无备注" : item.notes
-              }}</span>
-              ￥{{ item.amount }}
-            </li>
-          </ol>
-        </li>
-      </ol>
+      <div class="main">
+        <ol v-if="result.length !== 0">
+          <li v-for="(group, index) in result" :key="index">
+            <h3 class="title">
+              {{ beautify(group.title) }}<span>总计：￥{{ group.total }}</span>
+            </h3>
+            <ol>
+              <li v-for="item in group.items" :key="item.id" class="record">
+                <span v-for="i in item.tags" :key="i.id" class="reason">{{
+                  i.name
+                }}</span>
+                <span
+                  :style="{ marginRight: 'auto' }"
+                  class="notesStatistics"
+                  >{{ item.notes === "" ? "无备注" : item.notes }}</span
+                >
+                ￥{{ item.amount }}
+              </li>
+            </ol>
+          </li>
+        </ol>
+        <div v-else>无记录</div>
+      </div>
     </div>
   </layout>
 </template>
@@ -182,5 +189,9 @@ export default class Statistics extends Vue {
 // }
 .main {
   overflow: auto;
+}
+.reason {
+  display: block;
+  padding: 0 3px 0 0;
 }
 </style>
