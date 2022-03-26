@@ -164,3 +164,10 @@ Day.js  轻量级处理时间库
 项目描述： 随手记是一款极简的记账应用，也是一款基于 Vue2、VueRouter、TypeScript 的单页面应用，
 由单人独立实现，期间遇到很多 webpack 和 TypeScript 方面的问题，解决过程记录在本人博客[链接]
 源代码几乎完全用 TypeScript 实现，用到了装饰器语法
+
+* 部署
+1. 项目打包 yarn build
+2. 使用 serve 测试打包后的项目 安装：`yarn global add serve` 运行：`serve -s dist`
+3. 如果要部署在 github，首先要在 `vue.config.js` 中设置正确的 `publicPath`:
+`publicPath: process.env.NODE_ENV === 'production'?"/仓库名/":"/"`
+4. 
