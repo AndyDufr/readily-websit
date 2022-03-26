@@ -63,6 +63,7 @@ export default class Statistics extends Vue {
       .sort((a, b) => {
         return dayjs(b.time).valueOf() - dayjs(a.time).valueOf();
       });
+    if (recordListSort.length === 0) return [];
 
     type GroupListTabel = {
       title: string;
@@ -92,8 +93,6 @@ export default class Statistics extends Vue {
     groupListTabel.map((item) => {
       item.total = item.items.reduce((result, item) => result + item.amount, 0);
     });
-    console.log(groupListTabel);
-
     return groupListTabel;
   }
   value = "-";
