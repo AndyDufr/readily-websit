@@ -28,7 +28,9 @@
             </ol>
           </li>
         </ol>
-        <div v-else>无记录</div>
+        <div v-else>
+          <img src="@/assets/icons/noRecord.png" alt="" class="noRecord" />
+        </div>
       </div>
     </div>
   </layout>
@@ -193,5 +195,8 @@ export default class Statistics extends Vue {
 .reason {
   display: block;
   padding: 0 3px 0 0;
+}
+.noRecord {
+  margin-top: 30px;
 }
 </style>

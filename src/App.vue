@@ -13,5 +13,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #444;
+  max-width: 500px;
+  margin: 0 auto;
 }
 </style>
