@@ -6,8 +6,11 @@ import store from './store'
 import Nav from '@/components/Nav.vue'
 import Icon from '@/components/Icon.vue'
 import Layout from '@/components/Layout.vue'
+import { Overlay } from 'vant'
+import vant from 'vant'
 
-
+Vue.use(vant)
+Vue.use(Overlay)
 Vue.component('Nav', Nav)
 Vue.config.productionTip = false
 Vue.component('Icon', Icon)

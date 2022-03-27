@@ -17,6 +17,6 @@ git add -A
 git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
-git push -f <仓库地址> master:gh-pages
+git push -f https://github.com/AndyDufr/readily.git master:gh-pages
 
 cd -

@@ -5,16 +5,19 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:dev":"cross-env NODE_ENV-development vue-cli-serveice build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "cross-env": "^7.0.3",
     "dayjs": "^1.11.0",
     "echarts": "^5.3.1",
     "nanoid": "^3.3.1",
     "register-service-worker": "^1.7.1",
     "svg-sprite-loader": "4.1.6",
+    "vant": "^2.12.45",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2",

@@ -15,6 +15,11 @@
       @update:value="onUpdateTags"
       :value="record.tags"
     />
+    <van-overlay :show="show" @click="show = false">
+      <div class="wrapper">
+        <div class="block" />
+      </div>
+    </van-overlay>
   </layout>
 </template>
 
@@ -27,11 +32,11 @@ import NumberPad from "@/components/money/NumberPad.vue";
 import tagListModel from "@/models/tagListModel";
 import { Component } from "vue-property-decorator";
 import store from "@/store/myStore";
-
 @Component({
   components: { Tags, Notes, Types, NumberPad },
 })
 export default class Money extends Vue {
+  show = true;
   tags = tagListModel.fetch();
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   // get recordList1() {
@@ -83,6 +88,23 @@ export default class Money extends Vue {
 <style lang="scss" scoped>
 .notes {
   padding: 12px 0;
+}
+.wrapper {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  z-index: 99999;
+}
+
+.block {
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
 }
 </style>
 
