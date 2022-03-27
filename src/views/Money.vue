@@ -18,7 +18,7 @@
     <van-overlay :show="show" @click="show = false">
       <div class="wrapper">
         <div class="block">
-          <img src="@/assets/qrcode.png" alt="" />
+          <img src="@/assets/icons/qrcode.png" alt="" />
         </div>
       </div>
     </van-overlay>
