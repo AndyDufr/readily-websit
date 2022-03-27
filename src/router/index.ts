@@ -10,6 +10,10 @@ const routes: Array<RouteConfig> = [
     redirect: '/money' //重定向
   },
   {
+    path: '/readily',
+    redirect: '/money' //重定向
+  },
+  {
     path: '/money',
     name: 'Money',
     component: () => import('../views/Money.vue')

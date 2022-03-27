@@ -17,7 +17,9 @@
     />
     <van-overlay :show="show" @click="show = false">
       <div class="wrapper">
-        <div class="block" />
+        <div class="block">
+          <img src="@/assets/qrcode.png" alt="" />
+        </div>
       </div>
     </van-overlay>
   </layout>
@@ -105,6 +107,11 @@ export default class Money extends Vue {
   width: 120px;
   height: 120px;
   background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  > img {
+    width: 120px;
+    height: 120px;
+  }
 }
 </style>
 
